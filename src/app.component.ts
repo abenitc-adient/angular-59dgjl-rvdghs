@@ -1,17 +1,15 @@
-import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   DiagramComponent,
-  NodeModel,
-  ConnectorModel,
-} from '@syncfusion/ej2-angular-diagrams';
-import {
-  DiagramConstraints,
   NodeConstraints,
-  SelectorConstraints,
-  SelectorModel,
+  NodeModel,
   SnapConstraints,
   SnapSettingsModel,
-} from '@syncfusion/ej2-diagrams';
+  ConnectorModel,
+  SelectorModel,
+} from '@syncfusion/ej2-angular-diagrams';
+
+import { TooltipComponent } from '@syncfusion/ej2-angular-popups';
 
 /**
  * Sample for tooltip
@@ -26,9 +24,6 @@ import {
 export class AppComponent {
   @ViewChild('diagram')
   public diagram: DiagramComponent;
-  public snapSettings: SnapSettingsModel = {
-    constraints: SnapConstraints.None,
-  };
 
   public nodes: NodeModel[] = [
     {
@@ -37,23 +32,11 @@ export class AppComponent {
       height: 60,
       offsetX: 35,
       offsetY: 120,
-      annotations: [
-        {
-          content: 'Customer query',
-          offset: { x: 0.5, y: 1 },
-          margin: { top: 15 },
-        },
-      ],
-      tooltip: {
-        content: 'Queries from the customer',
-        position: 'BottomRight',
-        relativeMode: 'Object',
-      },
-      shape: {
-        type: 'Bpmn',
-        shape: 'Event',
-        event: { event: 'Start', trigger: 'Message' },
-      },
+      // tooltip: {
+      //   content: 'Queries from the customer',
+      //   position: 'BottomRight',
+      //   relativeMode: 'Object',
+      // },
     },
     {
       id: 'node2',
@@ -61,13 +44,11 @@ export class AppComponent {
       height: 70,
       offsetX: 140,
       offsetY: 120,
-      annotations: [{ content: 'Enough details?', offset: { x: 0.5, y: 0.5 } }],
-      tooltip: {
-        content: 'Whether the provided information is enough?',
-        position: 'BottomRight',
-        relativeMode: 'Object',
-      },
-      shape: { type: 'Bpmn', shape: 'Gateway' },
+      // tooltip: {
+      //   content: 'Whether the provided information is enough?',
+      //   position: 'BottomRight',
+      //   relativeMode: 'Object',
+      // },
     },
     {
       id: 'node3',
@@ -75,17 +56,11 @@ export class AppComponent {
       height: 50,
       offsetX: 270,
       offsetY: 120,
-      annotations: [{ content: 'Analyse', offset: { x: 0.5, y: 0.5 } }],
-      tooltip: {
-        content: 'Analysing the query',
-        position: 'BottomRight',
-        relativeMode: 'Object',
-      },
-      shape: {
-        type: 'Bpmn',
-        shape: 'Activity',
-        activity: { activity: 'Task' },
-      },
+      // tooltip: {
+      //   content: 'Analysing the query',
+      //   position: 'BottomRight',
+      //   relativeMode: 'Object',
+      // },
     },
     {
       id: 'node4',
@@ -93,11 +68,6 @@ export class AppComponent {
       height: 70,
       offsetX: 370,
       offsetY: 120,
-      shape: {
-        type: 'Bpmn',
-        shape: 'Gateway',
-        gateway: { type: 'Exclusive' },
-      },
       tooltip: {
         content: 'proceed to validate?',
         position: 'BottomRight',
@@ -106,22 +76,24 @@ export class AppComponent {
     },
   ];
 
-  public getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
-    connector.type = 'Orthogonal';
-    return connector;
-  }
   public getNodeDefaults(obj: NodeModel): NodeModel {
-    obj.offsetX += 0.5;
-    obj.offsetY += 0.5;
     obj.constraints = NodeConstraints.Default | NodeConstraints.Tooltip;
-    obj.style = { strokeWidth: 2 };
     return obj;
   }
 
-  public created(): void {
-    this.diagram.fitToPage({ mode: 'Width' });
+  @ViewChild('tooltip')
+  public workCellTooltip: TooltipComponent;
+  selectedNodeId: string;
+
+  onDiagramClick(eventArgs) {
+    if (!eventArgs || !eventArgs.element) return;
+    if (this.diagram.selectedItems.nodes.length != 1) {
+      this.workCellTooltip.close();
+      return;
+    }
+    this.selectedNodeId = this.diagram.selectedItems.nodes[0].id;
+
+    this.workCellTooltip.appendTo(`#${this.selectedNodeId}_groupElement`);
+    this.workCellTooltip.open();
   }
-  public selectedItems: SelectorModel = {
-    constraints: SelectorConstraints.All & ~SelectorConstraints.ToolTip,
-  };
 }
