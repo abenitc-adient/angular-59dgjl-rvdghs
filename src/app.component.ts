@@ -26,6 +26,8 @@ export class AppComponent {
       constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
       tooltip: {
         content: 'Queries from the customer',
+        position: 'TopRight',
+        relativeMode: 'Object',
       },
     },
     {
@@ -53,6 +55,26 @@ export class AppComponent {
       width: 75,
       height: 70,
       offsetX: 370,
+      offsetY: 120,
+    },
+    {
+      id: 'node5',
+      width: 60,
+      height: 50,
+      offsetX: 470,
+      offsetY: 120,
+      constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
+      tooltip: {
+        content: 'Song Tulip',
+        position: 'BottomRight',
+        relativeMode: 'Object',
+      },
+    },
+    {
+      id: 'node6',
+      width: 75,
+      height: 70,
+      offsetX: 570,
       offsetY: 120,
     },
   ];
