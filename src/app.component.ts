@@ -1,25 +1,16 @@
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   DiagramComponent,
   NodeConstraints,
   NodeModel,
-  SnapConstraints,
-  SnapSettingsModel,
-  ConnectorModel,
-  SelectorModel,
 } from '@syncfusion/ej2-angular-diagrams';
 
 import { TooltipComponent } from '@syncfusion/ej2-angular-popups';
 
-/**
- * Sample for tooltip
- */
-
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   @ViewChild('diagram')
@@ -32,11 +23,10 @@ export class AppComponent {
       height: 60,
       offsetX: 35,
       offsetY: 120,
-      // tooltip: {
-      //   content: 'Queries from the customer',
-      //   position: 'BottomRight',
-      //   relativeMode: 'Object',
-      // },
+      constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
+      tooltip: {
+        content: 'Queries from the customer',
+      },
     },
     {
       id: 'node2',
@@ -44,11 +34,6 @@ export class AppComponent {
       height: 70,
       offsetX: 140,
       offsetY: 120,
-      // tooltip: {
-      //   content: 'Whether the provided information is enough?',
-      //   position: 'BottomRight',
-      //   relativeMode: 'Object',
-      // },
     },
     {
       id: 'node3',
@@ -56,11 +41,12 @@ export class AppComponent {
       height: 50,
       offsetX: 270,
       offsetY: 120,
-      // tooltip: {
-      //   content: 'Analysing the query',
-      //   position: 'BottomRight',
-      //   relativeMode: 'Object',
-      // },
+      constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
+      tooltip: {
+        content: 'Analysing the query',
+        position: 'BottomRight',
+        relativeMode: 'Object',
+      },
     },
     {
       id: 'node4',
@@ -68,18 +54,8 @@ export class AppComponent {
       height: 70,
       offsetX: 370,
       offsetY: 120,
-      tooltip: {
-        content: 'proceed to validate?',
-        position: 'BottomRight',
-        relativeMode: 'Object',
-      },
     },
   ];
-
-  public getNodeDefaults(obj: NodeModel): NodeModel {
-    obj.constraints = NodeConstraints.Default | NodeConstraints.Tooltip;
-    return obj;
-  }
 
   @ViewChild('tooltip')
   public workCellTooltip: TooltipComponent;
