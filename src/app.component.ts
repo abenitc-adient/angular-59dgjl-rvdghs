@@ -23,12 +23,12 @@ export class AppComponent {
       height: 40,
       offsetX: 20,
       offsetY: 120,
-      constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
-      tooltip: {
-        content: 'Queries from the customer',
-        position: 'TopRight',
-        relativeMode: 'Object',
-      },
+      // constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
+      // tooltip: {
+      //   content: 'Queries from the customer',
+      //   position: 'TopRight',
+      //   relativeMode: 'Object',
+      // },
     },
     {
       id: 'node2',
@@ -36,6 +36,12 @@ export class AppComponent {
       height: 40,
       offsetX: 80,
       offsetY: 120,
+      // constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
+      // tooltip: {
+      //   content: 'Queries from the customer',
+      //   position: 'TopRight',
+      //   relativeMode: 'Object',
+      // },
     },
     {
       id: 'node3',
@@ -43,12 +49,12 @@ export class AppComponent {
       height: 40,
       offsetX: 140,
       offsetY: 120,
-      constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
-      tooltip: {
-        content: 'Analysing the query',
-        position: 'BottomRight',
-        relativeMode: 'Object',
-      },
+      // constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
+      // tooltip: {
+      //   content: 'Analysing the query',
+      //   position: 'BottomRight',
+      //   relativeMode: 'Object',
+      // },
     },
     {
       id: 'node4',
