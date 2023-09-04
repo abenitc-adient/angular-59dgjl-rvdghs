@@ -19,9 +19,9 @@ export class AppComponent {
   public nodes: NodeModel[] = [
     {
       id: 'node1',
-      width: 60,
-      height: 60,
-      offsetX: 35,
+      width: 40,
+      height: 40,
+      offsetX: 20,
       offsetY: 120,
       constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
       tooltip: {
@@ -32,16 +32,16 @@ export class AppComponent {
     },
     {
       id: 'node2',
-      width: 75,
-      height: 70,
-      offsetX: 140,
+      width: 40,
+      height: 40,
+      offsetX: 80,
       offsetY: 120,
     },
     {
       id: 'node3',
-      width: 60,
-      height: 50,
-      offsetX: 270,
+      width: 40,
+      height: 40,
+      offsetX: 140,
       offsetY: 120,
       constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
       tooltip: {
@@ -52,29 +52,9 @@ export class AppComponent {
     },
     {
       id: 'node4',
-      width: 75,
-      height: 70,
-      offsetX: 370,
-      offsetY: 120,
-    },
-    {
-      id: 'node5',
-      width: 60,
-      height: 50,
-      offsetX: 470,
-      offsetY: 120,
-      constraints: NodeConstraints.Default | NodeConstraints.Tooltip,
-      tooltip: {
-        content: 'Song Tulip',
-        position: 'BottomRight',
-        relativeMode: 'Object',
-      },
-    },
-    {
-      id: 'node6',
-      width: 75,
-      height: 70,
-      offsetX: 570,
+      width: 40,
+      height: 40,
+      offsetX: 200,
       offsetY: 120,
     },
   ];
